@@ -176,8 +176,7 @@ Softwareentwicklung1_WikiBookReader/
 
 ## Autor
 
-**Jonas Rohe**  
-Matrikelnummer: 21511  
+**Jonas Rohe**    
 Hochschule Stralsund – Softwareentwicklung 1  
 
 ---
