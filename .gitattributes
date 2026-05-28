@@ -1,4 +1,0 @@
-# Linguist overrides – exclude FXML and doc files from language stats
-*.fxml linguist-detectable=false
-src/doc/** linguist-documentation=true
-*.iml linguist-detectable=false
