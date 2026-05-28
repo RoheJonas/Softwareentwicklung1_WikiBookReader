@@ -1,0 +1,10 @@
+=== c++ ===
+Urheber: Stephan Kulla
+Änderung: 02.10.2015 um 11:41 Uhr
+Regale: []
+
+=== java ===
+Urheber: Unbekannt
+Änderung: Unbekannt
+Regale: []
+

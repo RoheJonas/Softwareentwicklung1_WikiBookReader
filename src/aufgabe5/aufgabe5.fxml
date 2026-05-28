@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.web.WebView?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="aufgabe5.Aufgabe5Controller"
+            style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12;">
+
+    <!-- TOP: Menü + Suchbereich (Aufgabe 10 + 11) -->
+    <top>
+        <VBox spacing="0" VBox.vgrow="NEVER">
+            <!-- Menübar (Aufgabe 10) -->
+            <MenuBar>
+                <Menu text="?">
+                    <MenuItem text="Über dieses Programm" onAction="#onAboutClicked"/>
+                </Menu>
+            </MenuBar>
+
+            <!-- Navigation: Zurück/Vor Buttons + ComboBox (Aufgabe 8/9) -->
+            <VBox spacing="8" style="-fx-border-color: #cccccc; -fx-border-width: 0 0 1 0; -fx-padding: 10;">
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Button fx:id="_btnBack" text="←"
+                            onAction="#onBackClicked"
+                            style="-fx-padding: 6 12 6 12; -fx-font-size: 14; -fx-font-weight: bold;"
+                            prefWidth="40"/>
+                    <Button fx:id="_btnForward" text="→"
+                            onAction="#onForwardClicked"
+                            style="-fx-padding: 6 12 6 12; -fx-font-size: 14; -fx-font-weight: bold;"
+                            prefWidth="40"/>
+                    <Separator orientation="VERTICAL"/>
+                    <ComboBox fx:id="_comboBoxHistory"
+                              promptText="Suchverlauf..."
+                              style="-fx-padding: 6; -fx-font-size: 12;"
+                              prefWidth="250"
+                              HBox.hgrow="SOMETIMES"/>
+                </HBox>
+
+                <!-- Suchzeile (wächst horizontal) -->
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <TextField fx:id="_searchField"
+                               promptText="Buchtitel eingeben..."
+                               style="-fx-padding: 6; -fx-font-size: 14;"
+                               HBox.hgrow="ALWAYS"
+                               onKeyPressed="#onSearchFieldKeyPressed"/>
+                    <Button text="Suchen"
+                            onAction="#onSearchButtonClicked"
+                            style="-fx-padding: 6 20 6 20; -fx-font-size: 14;"/>
+                </HBox>
+
+                <!-- Metadaten Labels -->
+                <HBox spacing="20">
+                    <Label fx:id="_labelUrheber" text="Letzter Bearbeiter: -"
+                           style="-fx-font-size: 12; -fx-text-fill: #333333;"/>
+                    <Label fx:id="_labelZeit" text="Letzte Änderung: -"
+                           style="-fx-font-size: 12; -fx-text-fill: #333333;"/>
+                </HBox>
+
+                <!-- Zettelkasten Buttons -->
+                <Separator/>
+                <HBox spacing="8" style="-fx-padding: 0 0 8 0; -fx-wrap-text: true;">
+                    <Button text="Hinzufügen" onAction="#onHinzufuegenClicked"
+                            style="-fx-padding: 6 16 6 16;"/>
+                    <Button text="Löschen" onAction="#onLoeschenClicked"
+                            style="-fx-padding: 6 16 6 16;"/>
+                    <Button text="Sortieren" onAction="#onSortierenClicked"
+                            style="-fx-padding: 6 16 6 16;"/>
+                    <Separator orientation="VERTICAL"/>
+                    <Button text="Speichern" onAction="#onSpeichernClicked"
+                            style="-fx-padding: 6 16 6 16;"/>
+                    <Button text="Laden" onAction="#onLadenClicked"
+                            style="-fx-padding: 6 16 6 16;"/>
+                    <Button text="Import" onAction="#onImportClicked"
+                            style="-fx-padding: 6 16 6 16;"/>
+                    <Button text="Export" onAction="#onExportClicked"
+                            style="-fx-padding: 6 16 6 16;"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </top>
+
+    <!-- CENTER: Browser (mit SplitPane für responsive Layout) -->
+    <center>
+        <!-- Aufgabe 11: SplitPane für Browser vs. Zettelkasten
+             (horizontal verschiebbarer Steg) -->
+        <SplitPane dividerPositions="0.75" SplitPane.resizableWithParent="true">
+            <!-- Linke Seite: WebView (Browser) -->
+            <WebView fx:id="_webView" SplitPane.resizableWithParent="true"/>
+
+            <!-- Rechte Seite: Zettelkasten (wächst mit) -->
+            <VBox style="-fx-border-color: #cccccc; -fx-border-width: 0 0 0 1; -fx-padding: 8;"
+                  SplitPane.resizableWithParent="true">
+                <Label text="Sammlung:" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+                <ListView fx:id="_listViewZettelkasten"
+                          VBox.vgrow="ALWAYS"
+                          style="-fx-padding: 8 0 0 0;"/>
+            </VBox>
+        </SplitPane>
+    </center>
+
+</BorderPane>
